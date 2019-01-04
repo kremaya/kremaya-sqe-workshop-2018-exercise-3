@@ -1,14 +1,13 @@
 
 import * as esprima from 'esprima';
-import * as esgraph from 'esgraph';
 import { getCode2 } from './submit-code';
 
 let trueNodesLines = [];
 let falseNodesLines = [];
 
 function getGraphCode(args, codeToParse) {
+    const esgraph = require('esgraph');
     let parsed = parseCode(codeToParse);
-    //const esgraph = require('esgraph');
     let cfg = esgraph(parsed.body[0].body);
     let graph = esgraph.dot(cfg, { source: codeToParse });
     graph = prepareGraph(graph);
